@@ -2,11 +2,12 @@ using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using Traversal.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<Context>();
-builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();   
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddErrorDescriber<CustomIdentityValidator>().AddEntityFrameworkStores<Context>();   
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
